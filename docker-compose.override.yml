@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+     - "5432:5432"
+    volumes:
+     - orchestrator-database:/var/lib/postgresql/data
+
+  redis:
+    ports:
+      - "6379:6379"
+    volumes:
+      - orchestrator-redis:/data
+
+  rabbitmq:
+    ports:
+      - "15672"
+      - "5672"
+
+  orchestrator:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  activityworker:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+volumes:
+  orchestrator-redis:
+    external: false
+  orchestrator-database:
+    external: false
