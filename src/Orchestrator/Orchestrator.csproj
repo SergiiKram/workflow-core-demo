@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
     <PackageReference Include="WorkflowCore" Version="3.5.6" />
-    <PackageReference Include="WorkflowCore.Persistence.PostgreSQL" Version="3.5.5" />
+    <PackageReference Include="WorkflowCore.Persistence.PostgreSQL" Version="3.5.6" />
     <PackageReference Include="WorkflowCore.Providers.Redis" Version="3.5.5" />
   </ItemGroup>
 
