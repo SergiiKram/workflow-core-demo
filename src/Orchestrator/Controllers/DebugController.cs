@@ -4,6 +4,8 @@ using Orchestrator.Workflow.HelloWorld;
 using System.Threading.Tasks;
 using Orchestrator.Workflow.HelloWorld.ActivityStep;
 using WorkflowCore.Interface;
+using WorkflowCore.Persistence.EntityFramework.Exceptions;
+using WorkflowCore.Persistence.EntityFramework.Interfaces;
 
 namespace Orchestrator.Controllers
 {
@@ -13,9 +15,9 @@ namespace Orchestrator.Controllers
     {
         private readonly ILogger<DebugController> _logger;
         private readonly IWorkflowController _workflowController;
-        private readonly IPersistenceProvider _workflowStore;
+        private readonly IExtendedPersistenceProvider _workflowStore;
 
-        public DebugController(ILogger<DebugController> logger, IWorkflowController workflowController, IPersistenceProvider workflowStore)
+        public DebugController(ILogger<DebugController> logger, IWorkflowController workflowController, IExtendedPersistenceProvider workflowStore)
         {
             _logger = logger;
             _workflowController = workflowController;
@@ -35,11 +37,20 @@ namespace Orchestrator.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("hello-world")]
-        public async Task<IActionResult> HelloWorld()
+        public async Task<IActionResult> HelloWorld(string reference)
         {
-            var id = await _workflowController.StartWorkflow(HelloWorldWorkflow.WorkflowId);
+            try
+            {
+                var id = await _workflowController.StartWorkflow(HelloWorldWorkflow.WorkflowId, reference: reference);
 
-            return Ok(new {id = id});
+                return Ok(new { id = id });
+            }
+            catch (WorkflowExistsException)
+            {
+                var workflowInstance = await _workflowStore.GetWorkflowInstanceByReference(reference);
+
+                return Ok(new { id = workflowInstance.Id });
+            }
         }
 
         [HttpPost("event")]

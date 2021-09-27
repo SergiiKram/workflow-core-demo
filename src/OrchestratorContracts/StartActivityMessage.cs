@@ -1,6 +1,6 @@
 ﻿namespace OrchestratorContracts
 {
-    public class ActivityMessage
+    public class StartActivityMessage
     {
         public string WorkflowId { get; set; }
     }

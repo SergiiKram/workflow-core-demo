@@ -21,7 +21,7 @@ namespace Orchestrator.Workflow.HelloWorld.ActivityStep
             Console.WriteLine("Invoke Activity");
 
             // TODO: Use Send
-            await _publishEndpoint.Publish(new ActivityMessage {WorkflowId = context.Workflow.Id});
+            await _publishEndpoint.Publish(new StartActivityMessage {WorkflowId = context.Workflow.Id});
 
             return ExecutionResult.Next();
         }
