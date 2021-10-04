@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using OrchestratorContracts;
 using System;
 
 namespace ActivityWorker
@@ -67,7 +68,7 @@ namespace ActivityWorker
         {
             services.AddMassTransit(x =>
             {
-                x.AddConsumer<InvokeActivityConsumer>();
+                x.AddConsumer<StartActivityConsumer>();
 
                 x.SetKebabCaseEndpointNameFormatter();
 
@@ -78,8 +79,33 @@ namespace ActivityWorker
                         h.Username("guest");
                         h.Password("guest");
                     });
-                    cfg.ConfigureEndpoints(context);
+
+                    EndpointConvention.Map<ActivityResultMessage>(new Uri("queue:activity-result"));
+
+                    cfg.ReceiveEndpoint("start-activity", e =>
+                    {
+                        e.ConcurrentMessageLimit = 1;
+                        e.PrefetchCount = 1;
+                        e.Consumer<StartActivityConsumer>(context);
+                        //e.ConfigureMessageTopology<StartActivityMessage>(false);
+                    });
                 });
+
+                //x.UsingAmazonSqs((context, cfg) =>
+                //{
+                //    cfg.Host("us-east-2", h =>
+                //    {
+                //        h.AccessKey("");
+                //        h.SecretKey("");
+                //    });
+
+                //    EndpointConvention.Map<ActivityResultMessage>(new Uri("queue:activity-result"));
+
+                //    cfg.ReceiveEndpoint("start-activity", e =>
+                //    {
+                //        e.Consumer<StartActivityConsumer>(context);
+                //    });
+                //});
             });
 
             services.AddMassTransitHostedService();

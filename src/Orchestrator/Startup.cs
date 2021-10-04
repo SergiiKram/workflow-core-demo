@@ -1,17 +1,18 @@
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Orchestrator.Workflow;
 using Orchestrator.Workflow.HelloWorld;
 using Orchestrator.Workflow.HelloWorld.ActivityStep;
+using OrchestratorContracts;
 using System;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Orchestrator
 {
@@ -96,8 +97,30 @@ namespace Orchestrator
                         h.Username("guest");
                         h.Password("guest");
                     });
-                    cfg.ConfigureEndpoints(context);
+                    
+                    //cfg.Send<StartActivityMessage>(x => x.UseRoutingKeyFormatter(context => context.Message.WorkflowId));
+                    cfg.ReceiveEndpoint("activity-result", e =>
+                    {
+                        e.PrefetchCount = 1;
+                        e.Consumer<ActivityResultConsumer>(context);
+                        e.ConfigureMessageTopology<ActivityResultMessage>(false);
+                    });
                 });
+
+                //x.UsingAmazonSqs((context, cfg) =>
+                //{
+                //    cfg.Host("us-east-2", h =>
+                //    {
+                //        h.AccessKey("");
+                //        h.SecretKey("");
+                //    });
+
+                //    cfg.ReceiveEndpoint("activity-result", e =>
+                //    {
+                //        e.Consumer<ActivityResultConsumer>(context);
+                //        e.ConfigureMessageTopology<ActivityResultMessage>(false);
+                //    });
+                //});
             });
 
             services.AddMassTransitHostedService();
@@ -110,8 +133,7 @@ namespace Orchestrator
             services.AddWorkflow(cfg =>
             {
                 // Migration should be separated.
-                cfg.UsePostgreSQL(@"Server=postgres;Port=5432;Database=workflow;User Id=postgres;Password=password;", true,
-                    true);
+                cfg.UsePostgreSQL(@"Server=postgres;Port=5432;Database=workflow;User Id=postgres;Password=password;", true, true);
 
                 cfg.UseRedisLocking("redis:6379");
                 

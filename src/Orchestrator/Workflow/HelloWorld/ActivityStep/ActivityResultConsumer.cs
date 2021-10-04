@@ -6,7 +6,7 @@ using WorkflowCore.Interface;
 
 namespace Orchestrator.Workflow.HelloWorld.ActivityStep
 {
-    public class ActivityResultConsumer : IConsumer<ActivityResult>
+    public class ActivityResultConsumer : IConsumer<ActivityResultMessage>
     {
         private readonly IWorkflowController _workflowController;
 
@@ -15,7 +15,7 @@ namespace Orchestrator.Workflow.HelloWorld.ActivityStep
             _workflowController = workflowController;
         }
 
-        public async Task Consume(ConsumeContext<ActivityResult> context)
+        public async Task Consume(ConsumeContext<ActivityResultMessage> context)
         {
             Console.WriteLine("Activity Result");
 
