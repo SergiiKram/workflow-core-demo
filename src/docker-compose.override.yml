@@ -16,9 +16,12 @@ services:
       - orchestrator-redis:/data
 
   rabbitmq:
+    hostname: 'rabbitmq'
     ports:
       - "15672"
       - "5672"
+    volumes:
+      - orchestrator-rabbitmq:/var/lib/rabbitmq/mnesia/
 
   orchestrator:
     environment:
@@ -44,4 +47,6 @@ volumes:
   orchestrator-redis:
     external: false
   orchestrator-database:
+    external: false
+  orchestrator-rabbitmq:
     external: false
