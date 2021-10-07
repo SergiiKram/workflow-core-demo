@@ -21,7 +21,7 @@ services:
       - "15672"
       - "5672"
     volumes:
-      - orchestrator-rabbitmq:/var/lib/rabbitmq/mnesia/
+      - orchestrator-rabbitmq:/var/lib/rabbitmq
 
   orchestrator:
     environment:
@@ -31,6 +31,7 @@ services:
       - "80"
       - "443"
     volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   activityworker:
@@ -41,6 +42,7 @@ services:
       - "80"
       - "443"
     volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
 volumes:

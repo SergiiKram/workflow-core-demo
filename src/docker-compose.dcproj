@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>5adb296c-4f98-4e8f-9356-2faa0f57af6e</ProjectGuid>
+    <ProjectGuid>702fe24d-2d60-4dfa-b67d-3571b85de422</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>orchestrator</DockerServiceName>
