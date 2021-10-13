@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["ActivityWorker/ActivityWorker.csproj", "ActivityWorker/"]
+COPY ["OrchestratorContracts/OrchestratorContracts.csproj", "OrchestratorContracts/"]
 RUN dotnet restore "ActivityWorker/ActivityWorker.csproj"
 COPY . .
 WORKDIR "/src/ActivityWorker"
