@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="MassTransit.AmazonSQS" Version="7.2.3-develop.256" />
     <PackageReference Include="MassTransit.AspNetCore" Version="7.2.3-develop.256" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.3-develop.256" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
   </ItemGroup>
 
