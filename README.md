@@ -1,4 +1,4 @@
-[![.NET](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/dotnet.yml/badge.svg)](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/dotnet.yml)
+[![Build and test](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/build-test.yml/badge.svg)](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/build-test.yml)
 [![CodeQL](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/codeql-analysis.yml)
 
 # Workflow Core PoC

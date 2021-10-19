@@ -18,32 +18,24 @@ services:
   rabbitmq:
     hostname: 'rabbitmq'
     ports:
-      - "15672"
-      - "5672"
+      - "15672:15672"
+      - "5672:5672"
     volumes:
       - orchestrator-rabbitmq:/var/lib/rabbitmq
 
   orchestrator:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
     ports:
-      - "80"
-      - "443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - "7080:80"
 
   activityworker:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
     ports:
-      - "80"
-      - "443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - "7180:80"
 
 volumes:
   orchestrator-redis:
