@@ -1,5 +1,6 @@
 ﻿using Orchestrator.Workflow.HelloWorld.ActivityStep;
 using WorkflowCore.Interface;
+using WorkflowCore.Models;
 
 namespace Orchestrator.Workflow.HelloWorld
 {
@@ -14,6 +15,7 @@ namespace Orchestrator.Workflow.HelloWorld
         {
             builder
                 .StartWith<HelloWorldStep>()
+                .OnError(WorkflowErrorHandling.Terminate)
                 .Then<InvokeActivityStep>()
                 //.WaitFor(WaitActivityStep.EventName, (o, context) => context.Workflow.Id)
                 .Then<WaitActivityStep>()

@@ -152,6 +152,8 @@ namespace Orchestrator
                 cfg.UseRedisEventHub("redis:6379", "orchestrator-events");
             });
 
+            services.AddWorkflowStepMiddleware<PollyRetryMiddleware>();
+
             services.AddTransient<HelloWorldWorkflow>();
             services.AddTransient<HelloWorldStep>();
             services.AddTransient<InvokeActivityStep>();
