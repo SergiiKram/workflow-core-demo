@@ -14,8 +14,8 @@ namespace Orchestrator.Workflow.HelloWorld
         public void Build(IWorkflowBuilder<object> builder)
         {
             builder
+                .UseDefaultErrorBehavior(WorkflowErrorHandling.Terminate)
                 .StartWith<HelloWorldStep>()
-                .OnError(WorkflowErrorHandling.Terminate)
                 .Then<InvokeActivityStep>()
                 //.WaitFor(WaitActivityStep.EventName, (o, context) => context.Workflow.Id)
                 .Then<WaitActivityStep>()

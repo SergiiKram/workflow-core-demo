@@ -22,9 +22,10 @@ namespace Orchestrator.Workflow
         public IAsyncPolicy<ExecutionResult> GetRetryPolicy() =>
             Policy<ExecutionResult>
                 .Handle<Exception>()
-                .RetryAsync(
+                .WaitAndRetryAsync(
                     MaxRetries,
-                    (result, retryCount, context) =>
+                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                    (result, sleepDuration, retryCount, context) =>
                         UpdateRetryCount(result.Exception, retryCount, context[StepContextKey] as IStepExecutionContext)
                 );
 
@@ -56,7 +57,6 @@ namespace Orchestrator.Workflow
                 MaxRetries
             );
 
-            // TODO: Come up with way to persist workflow
             return Task.CompletedTask;
         }
     }
