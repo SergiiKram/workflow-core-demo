@@ -19,16 +19,6 @@ namespace Orchestrator.Workflow
             _log = log;
         }
 
-        public IAsyncPolicy<ExecutionResult> GetRetryPolicy() =>
-            Policy<ExecutionResult>
-                .Handle<Exception>()
-                .WaitAndRetryAsync(
-                    MaxRetries,
-                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    (result, sleepDuration, retryCount, context) =>
-                        UpdateRetryCount(result.Exception, retryCount, context[StepContextKey] as IStepExecutionContext)
-                );
-
         public async Task<ExecutionResult> HandleAsync(
             IStepExecutionContext context,
             IStepBody body,
@@ -40,6 +30,16 @@ namespace Orchestrator.Workflow
                 { StepContextKey, context }
             });
         }
+
+        private IAsyncPolicy<ExecutionResult> GetRetryPolicy() =>
+            Policy<ExecutionResult>
+                .Handle<Exception>()
+                .WaitAndRetryAsync(
+                    MaxRetries,
+                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                    (result, sleepDuration, retryCount, context) =>
+                        UpdateRetryCount(result.Exception, retryCount, context[StepContextKey] as IStepExecutionContext)
+                );
 
         private Task UpdateRetryCount(
             Exception exception,

@@ -64,6 +64,7 @@ namespace Orchestrator
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Orchestrator v1");
                     c.DisplayRequestDuration();
+                    c.EnableTryItOutByDefault();
                 });
             }
 
