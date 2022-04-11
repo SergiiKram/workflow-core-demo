@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
+using ExecutionResult = WorkflowCore.Models.ExecutionResult;
 
 namespace Orchestrator.Workflow.HelloWorld.ActivityStep
 {

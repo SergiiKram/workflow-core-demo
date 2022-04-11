@@ -85,28 +85,9 @@ namespace ActivityWorker
                         e.ConcurrentMessageLimit = 1;
                         e.PrefetchCount = 1;
                         e.Consumer<StartActivityConsumer>(context);
-                        //e.ConfigureMessageTopology<StartActivityMessage>(false);
                     });
                 });
-
-                //x.UsingAmazonSqs((context, cfg) =>
-                //{
-                //    cfg.Host("us-east-2", h =>
-                //    {
-                //        h.AccessKey("");
-                //        h.SecretKey("");
-                //    });
-
-                //    EndpointConvention.Map<ActivityResultMessage>(new Uri("queue:activity-result"));
-
-                //    cfg.ReceiveEndpoint("start-activity", e =>
-                //    {
-                //        e.Consumer<StartActivityConsumer>(context);
-                //    });
-                //});
             });
-
-            services.AddMassTransitHostedService();
 
             return services;
         }
