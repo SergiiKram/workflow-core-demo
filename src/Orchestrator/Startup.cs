@@ -100,7 +100,6 @@ namespace Orchestrator
                         h.Password("guest");
                     });
                     
-                    //cfg.Send<StartActivityMessage>(x => x.UseRoutingKeyFormatter(context => context.Message.WorkflowId));
                     cfg.ReceiveEndpoint("activity-result", e =>
                     {
                         e.PrefetchCount = 1;
@@ -108,24 +107,7 @@ namespace Orchestrator
                         e.ConfigureMessageTopology<ActivityResultMessage>(false);
                     });
                 });
-
-                //x.UsingAmazonSqs((context, cfg) =>
-                //{
-                //    cfg.Host("us-east-2", h =>
-                //    {
-                //        h.AccessKey("");
-                //        h.SecretKey("");
-                //    });
-
-                //    cfg.ReceiveEndpoint("activity-result", e =>
-                //    {
-                //        e.Consumer<ActivityResultConsumer>(context);
-                //        e.ConfigureMessageTopology<ActivityResultMessage>(false);
-                //    });
-                //});
             });
-
-            services.AddMassTransitHostedService();
 
             return services;
         }

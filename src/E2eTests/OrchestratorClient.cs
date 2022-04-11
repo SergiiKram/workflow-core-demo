@@ -61,7 +61,7 @@ namespace E2eTests
             return workflowInstance;
         }
 
-        public Uri AddParameter(string url, string paramName, string paramValue)
+        private static Uri AddParameter(string url, string paramName, string paramValue)
         {
             var uriBuilder = new UriBuilder(url);
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
