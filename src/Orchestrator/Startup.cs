@@ -59,13 +59,15 @@ namespace Orchestrator
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Orchestrator v1");
-                    c.DisplayRequestDuration();
-                });
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Orchestrator v1");
+                c.DisplayRequestDuration();
+                c.EnableTryItOutByDefault();
+            });
 
             app.UseRouting();
 
