@@ -5,8 +5,8 @@
 
 version: 2
 updates:
-  - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "docker"
+    directory: "/"
     schedule:
       interval: "daily"
     assignees:
@@ -17,7 +17,7 @@ updates:
       interval: "daily"
     assignees:
      - "SergiiKram"
-  - package-ecosystem: "docker"
+  - package-ecosystem: "nuget"
     directory: "/"
     schedule:
       interval: "daily"
