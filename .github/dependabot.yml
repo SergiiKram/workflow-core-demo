@@ -18,7 +18,7 @@ updates:
     assignees:
      - "SergiiKram"
   - package-ecosystem: "docker"
-    directory: "/src/ActivityWorker/Dockerfile"
+    directory: "/src/ActivityWorker"
     schedule:
       interval: "daily"
     assignees:
