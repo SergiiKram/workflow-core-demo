@@ -14,24 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
     - name: Compose build
       working-directory: src
-      run: docker compose build
-    - name: Compose run
+      run: docker compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.integration-tests.yml build
+    - name: Compose run E2E tests
       working-directory: src
-      run: docker compose up -d
-    - name: Wait for initialization
-      run: sleep 30s
-    - name: Restore dependencies
-      working-directory: src/E2eTests
-      run: dotnet restore
-    - name: Build
-      working-directory: src/E2eTests
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      working-directory: src/E2eTests
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      run: docker compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.integration-tests.yml up --exit-code-from e2etests

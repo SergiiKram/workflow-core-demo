@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Flurl;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using System.Web;
 using WorkflowCore.Models;
 
 namespace E2eTests
@@ -26,7 +25,9 @@ namespace E2eTests
 
         public async Task<WorkflowId> StartWorkflow(string reference)
         {
-            var uri = AddParameter("http://localhost:7080/workflows/hello-world", "reference", reference);
+            var uri = new Url(_httpClient.BaseAddress)
+                .AppendPathSegments("workflows", "hello-world")
+                .SetQueryParam("reference", reference);
 
             var response = await _httpClient.PostAsync(uri, null);
 
@@ -41,7 +42,9 @@ namespace E2eTests
 
         public async Task<WorkflowInstance> GetWorkflowByReference(string reference)
         {
-            var uri = AddParameter("http://localhost:7080/workflows", "reference", reference);
+            var uri = new Url(_httpClient.BaseAddress)
+                .AppendPathSegment("workflows")
+                .SetQueryParam("reference", reference);
 
             var responseString = await _httpClient.GetStringAsync(uri);
 
@@ -52,23 +55,14 @@ namespace E2eTests
 
         public async Task<WorkflowInstance> GetWorkflow(string id)
         {
-            var uri = new Uri(new Uri("http://localhost:7080/workflows/", UriKind.Absolute), new Uri(id, UriKind.Relative));
+            var uri = new Url(_httpClient.BaseAddress)
+                .AppendPathSegments("workflows", id);
 
             var responseString = await _httpClient.GetStringAsync(uri);
 
             var workflowInstance = JsonSerializer.Deserialize<WorkflowInstance>(responseString, _serializerOptions);
 
             return workflowInstance;
-        }
-
-        private static Uri AddParameter(string url, string paramName, string paramValue)
-        {
-            var uriBuilder = new UriBuilder(url);
-            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
-            query[paramName] = paramValue;
-            uriBuilder.Query = query.ToString();
-
-            return uriBuilder.Uri;
         }
 
         public record WorkflowId
