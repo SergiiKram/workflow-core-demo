@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polly;
 using System;
 using System.Threading.Tasks;
 using WorkflowCore.Models;
@@ -9,24 +10,51 @@ namespace E2eTests
 {
     public class E2eTests
     {
-        [Fact]
-        public async Task IdempotentE2eTest()
+        private readonly IHost _host;
+
+        public E2eTests()
         {
+            var orchestratorUrl = Environment.GetEnvironmentVariable("ORCHESTRATOR_URL")
+                ?? "http://localhost:7080/";
+
             var builder = new HostBuilder()
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddHttpClient<OrchestratorClient>();
+                services.AddHttpClient<OrchestratorClient>(client =>
+                {
+                    client.BaseAddress = new Uri(orchestratorUrl);
+                })
+                .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[]
+                {
+                    TimeSpan.FromSeconds(2),
+                    TimeSpan.FromSeconds(3),
+                    TimeSpan.FromSeconds(3)
+                }));
             });
 
-            var host = builder.Build();
+            _host = builder.Build();
+        }
 
-            var orchestratorClient = host.Services.GetRequiredService<OrchestratorClient>();
+        [Fact]
+        public async Task TestWorkflowIsIdempotent()
+        {
+            var orchestratorClient = _host.Services.GetRequiredService<OrchestratorClient>();
 
             var reference = Guid.NewGuid().ToString();
             var id1 = await orchestratorClient.StartWorkflow(reference);
             var id2 = await orchestratorClient.StartWorkflow(reference);
 
-            await Task.Delay(TimeSpan.FromSeconds(45));
+            for (var i = 0; i < 4; i++)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(15));
+
+                var wf = await orchestratorClient.GetWorkflow(id1.Id);
+
+                if (wf.Status == WorkflowStatus.Complete || wf.Status == WorkflowStatus.Terminated)
+                {
+                    break;
+                }
+            }
 
             var wf1 = await orchestratorClient.GetWorkflow(id1.Id);
             var wf2 = await orchestratorClient.GetWorkflowByReference(reference);

@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  e2etests:
+    image: ${DOCKER_REGISTRY-}e2etests
+    build:
+      context: .
+      dockerfile: E2eTests/Dockerfile
+    environment:
+     - ORCHESTRATOR_URL=http://orchestrator:80/
+    depends_on:
+     - orchestrator

@@ -18,7 +18,7 @@ namespace ActivityWorker.ActivityStep
         {
             Console.WriteLine("Activity Triggered");
 
-            await Task.Delay(TimeSpan.FromSeconds(40));
+            await Task.Delay(TimeSpan.FromSeconds(10));
 
             await _sendEndpoint.Send(new ActivityResultMessage
             {
