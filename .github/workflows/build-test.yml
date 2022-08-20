@@ -14,6 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Build unit tests
+      working-directory: src
+      run: docker build -t orchestrator.unittests:latest -f Orchestrator.UnitTests/Dockerfile .
+    - name: Run unit tests
+      working-directory: src
+      run: docker run orchestrator.unittests
     - name: Compose build
       working-directory: src
       run: docker compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.integration-tests.yml build
