@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  - package-ecosystem: "docker"
+  - package-ecosystem: "nuget"
     directory: "/"
     schedule:
       interval: "daily"
@@ -17,8 +17,8 @@ updates:
       interval: "daily"
     assignees:
      - "SergiiKram"
-  - package-ecosystem: "nuget"
-    directory: "/"
+  - package-ecosystem: "docker"
+    directory: "/src/ActivityWorker/Dockerfile"
     schedule:
       interval: "daily"
     assignees:
