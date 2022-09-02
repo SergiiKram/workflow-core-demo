@@ -7,4 +7,4 @@ RUN dotnet restore "E2eTests/E2eTests.csproj"
 COPY . .
 WORKDIR "/src/E2eTests"
 RUN dotnet build "E2eTests.csproj" --configuration Release --no-restore
-ENTRYPOINT ["dotnet", "test", "--configuration", "Release", "--no-build"]
+ENTRYPOINT ["dotnet", "test", "--configuration", "Release", "--no-build", "--logger:trx"]

@@ -10,3 +10,5 @@ services:
      - ORCHESTRATOR_URL=http://orchestrator:80/
     depends_on:
      - orchestrator
+    volumes:
+     - ./E2eTestResults:/src/E2eTests/TestResults
