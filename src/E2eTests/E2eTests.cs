@@ -38,6 +38,12 @@ namespace E2eTests
         [Fact]
         public async Task TestWorkflowIsIdempotent()
         {
+            // RabbitMQ initilizes too long in GitHub actions
+            if (RunsInDocker)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(15));
+            }
+
             var orchestratorClient = _host.Services.GetRequiredService<OrchestratorClient>();
 
             var reference = Guid.NewGuid().ToString();
@@ -63,6 +69,11 @@ namespace E2eTests
             Assert.Equal(reference, wf1.Reference);
             Assert.Equal(reference, wf2.Reference);
             Assert.Equal(WorkflowStatus.Complete, wf1.Status);
+        }
+
+        private bool RunsInDocker 
+        {
+            get { return string.Equals(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), "true", StringComparison.OrdinalIgnoreCase); }
         }
     }
 }
