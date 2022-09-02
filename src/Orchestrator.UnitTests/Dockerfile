@@ -9,4 +9,4 @@ RUN dotnet restore "Orchestrator.UnitTests/Orchestrator.UnitTests.csproj"
 COPY . .
 WORKDIR "/src/Orchestrator.UnitTests"
 RUN dotnet build "Orchestrator.UnitTests.csproj" -c Release --no-restore
-ENTRYPOINT ["dotnet", "test", "--configuration", "Release", "--no-build"]
+ENTRYPOINT ["dotnet", "test", "--configuration", "Release", "--no-build", "--logger:trx"]
