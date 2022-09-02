@@ -18,7 +18,28 @@ updates:
     assignees:
      - "SergiiKram"
   - package-ecosystem: "docker"
-    directory: "/src"
+    directory: "/src/ActivityWorker"
+    ignore:
+     - dependency-name: "dotnet/sdk"
+       update-types: ["version-update:semver-major"]
+    schedule:
+      interval: "daily"
+    assignees:
+     - "SergiiKram"
+  - package-ecosystem: "docker"
+    directory: "/src/E2eTests"
+    schedule:
+      interval: "daily"
+    assignees:
+     - "SergiiKram"
+  - package-ecosystem: "docker"
+    directory: "/src/Orchestrator"
+    schedule:
+      interval: "daily"
+    assignees:
+     - "SergiiKram"
+  - package-ecosystem: "docker"
+    directory: "/src/Orchestrator.UnitTests"
     schedule:
       interval: "daily"
     assignees:
