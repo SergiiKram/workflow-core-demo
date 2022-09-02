@@ -18,7 +18,25 @@ updates:
     assignees:
      - "SergiiKram"
   - package-ecosystem: "docker"
-    directory: "/src"
+    directory: "/src/ActivityWorker"
+    schedule:
+      interval: "daily"
+    assignees:
+     - "SergiiKram"
+  - package-ecosystem: "docker"
+    directory: "/src/E2eTests"
+    schedule:
+      interval: "daily"
+    assignees:
+     - "SergiiKram"
+  - package-ecosystem: "docker"
+    directory: "/src/Orchestrator"
+    schedule:
+      interval: "daily"
+    assignees:
+     - "SergiiKram"
+  - package-ecosystem: "docker"
+    directory: "/src/Orchestrator.UnitTests"
     schedule:
       interval: "daily"
     assignees:

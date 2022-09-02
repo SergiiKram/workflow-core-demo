@@ -44,7 +44,7 @@ namespace E2eTests
             var id1 = await orchestratorClient.StartWorkflow(reference);
             var id2 = await orchestratorClient.StartWorkflow(reference);
 
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 7; i++)
             {
                 await Task.Delay(TimeSpan.FromSeconds(15));
 
