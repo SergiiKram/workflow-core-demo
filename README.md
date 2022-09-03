@@ -1,4 +1,4 @@
-[![Build and test](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/CI.yml/badge.svg)](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/CI.yml)
+[![CI](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/CI.yml/badge.svg)](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/CI.yml)
 [![CodeQL](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/SergiiKram/workflow-core-demo/actions/workflows/codeql-analysis.yml)
 
 # Workflow Core PoC
