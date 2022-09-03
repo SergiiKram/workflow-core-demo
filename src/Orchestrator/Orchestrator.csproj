@@ -14,7 +14,7 @@
     <PackageReference Include="SergiiKram.WorkflowCore.Persistence.PostgreSQL.Idempotent" Version="3.6.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="WorkflowCore" Version="3.6.5" />
-    <PackageReference Include="WorkflowCore.Providers.Redis" Version="3.6.5" />
+    <PackageReference Include="WorkflowCore.Providers.Redis" Version="3.7.0" />
   </ItemGroup>
 
   <ItemGroup>
