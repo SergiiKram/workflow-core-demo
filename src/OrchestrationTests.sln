@@ -20,11 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{0F47
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{CB476771-3B9E-4C0A-B277-AEB0EA66FC36}"
 	ProjectSection(SolutionItems) = preProject
-		..\.github\workflows\build-test.yml = ..\.github\workflows\build-test.yml
 		..\.github\workflows\codeql-analysis.yml = ..\.github\workflows\codeql-analysis.yml
+		..\.github\workflows\CI.yml = ..\.github\workflows\CI.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchestrator.UnitTests", "Orchestrator.UnitTests\Orchestrator.UnitTests.csproj", "{E0DCFAFF-5E89-44B5-8DA4-764D955E109A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orchestrator.UnitTests", "Orchestrator.UnitTests\Orchestrator.UnitTests.csproj", "{E0DCFAFF-5E89-44B5-8DA4-764D955E109A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
