@@ -13,10 +13,6 @@ COPY . .
 WORKDIR "/src/Orchestrator"
 RUN dotnet build "Orchestrator.csproj" -c Release -o /app/build
 
-FROM build AS test2
-WORKDIR "/src/Orchestrator.UnitTests"
-RUN dotnet test -c Release
-
 FROM build AS publish
 RUN dotnet publish "Orchestrator.csproj" -c Release -o /app/publish
 
