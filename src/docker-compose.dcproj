@@ -7,11 +7,12 @@
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>orchestrator</DockerServiceName>
+    <AdditionalComposeFilePaths>docker-compose.dependencies.yml</AdditionalComposeFilePaths>
   </PropertyGroup>
   <ItemGroup>
+    <None Include=".env" />
     <None Include="docker-compose.integration-tests.yml" />
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yml</DependentUpon>
+    <None Include="docker-compose.dependencies.yml">
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
