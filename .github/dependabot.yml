@@ -22,6 +22,8 @@ updates:
     ignore:
      - dependency-name: "dotnet/sdk"
        update-types: ["version-update:semver-major"]
+     - dependency-name: "dotnet/aspnet"
+       update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
     assignees:
@@ -39,6 +41,8 @@ updates:
     directory: "/src/Orchestrator"
     ignore:
      - dependency-name: "dotnet/sdk"
+       update-types: ["version-update:semver-major"]
+     - dependency-name: "dotnet/aspnet"
        update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
