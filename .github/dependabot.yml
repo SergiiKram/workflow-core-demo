@@ -12,14 +12,10 @@ updates:
        update-types: ["version-update:semver-major"]    
     schedule:
       interval: "daily"
-    assignees:
-     - "SergiiKram"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    assignees:
-     - "SergiiKram"
   - package-ecosystem: "docker"
     directory: "/src/ActivityWorker"
     ignore:
@@ -29,8 +25,6 @@ updates:
        update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
-    assignees:
-     - "SergiiKram"
   - package-ecosystem: "docker"
     directory: "/src/E2eTests"
     ignore:
@@ -38,8 +32,6 @@ updates:
        update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
-    assignees:
-     - "SergiiKram"
   - package-ecosystem: "docker"
     directory: "/src/Orchestrator"
     ignore:
@@ -49,8 +41,6 @@ updates:
        update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
-    assignees:
-     - "SergiiKram"
   - package-ecosystem: "docker"
     directory: "/src/Orchestrator.UnitTests"
     ignore:
@@ -58,5 +48,3 @@ updates:
        update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
-    assignees:
-     - "SergiiKram"
