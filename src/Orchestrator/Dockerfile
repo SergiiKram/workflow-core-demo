@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0.14 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0.406 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0.407 AS build
 WORKDIR /src
 COPY ["Orchestrator/Orchestrator.csproj", "Orchestrator/"]
 COPY ["OrchestratorContracts/OrchestratorContracts.csproj", "OrchestratorContracts/"]
