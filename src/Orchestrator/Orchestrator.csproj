@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,10 +11,10 @@
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="Polly" Version="8.1.0" />
-    <PackageReference Include="SergiiKram.WorkflowCore.Persistence.PostgreSQL.Idempotent" Version="3.9.0.2" />
+    <PackageReference Include="SergiiKram.WorkflowCore.Persistence.PostgreSQL.Idempotent" Version="3.9.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="SergiiKram.WorkflowCore" Version="3.9.0.2" />
-    <PackageReference Include="SergiiKram.WorkflowCore.Providers.Redis" Version="3.9.0.2" />
+    <PackageReference Include="SergiiKram.WorkflowCore" Version="3.9.0.3" />
+    <PackageReference Include="SergiiKram.WorkflowCore.Providers.Redis" Version="3.9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
