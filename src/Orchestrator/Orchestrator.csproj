@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
-    <PackageReference Include="Polly" Version="8.1.0" />
+    <PackageReference Include="Polly" Version="8.2.0" />
     <PackageReference Include="SergiiKram.WorkflowCore.Persistence.PostgreSQL.Idempotent" Version="3.9.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="SergiiKram.WorkflowCore" Version="3.9.0.3" />
