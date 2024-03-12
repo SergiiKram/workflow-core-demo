@@ -19,6 +19,4 @@ RUN dotnet publish "Orchestrator.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-#RUN mkdir -p /opt/profiling
-#RUN curl -L https://download-cdn.jetbrains.com/resharper/dotUltimate.2021.2.2/JetBrains.dotTrace.CommandLineTools.linux-x64.2021.2.2.tar.gz | tar xzf - -C /opt/profiling
 ENTRYPOINT ["dotnet", "Orchestrator.dll"]
