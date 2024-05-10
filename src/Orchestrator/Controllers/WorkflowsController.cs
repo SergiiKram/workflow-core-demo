@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Orchestrator.Workflow.HelloWorld;
 using System.Threading.Tasks;
+using WorkflowCore.Exceptions;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
-using WorkflowCore.Persistence.EntityFramework.Exceptions;
 using WorkflowCore.Persistence.EntityFramework.Interfaces;
 
 namespace Orchestrator.Controllers
