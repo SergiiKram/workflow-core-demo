@@ -1,6 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0.427-1 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0.428-1 AS build
 WORKDIR /src
 COPY ["E2eTests/E2eTests.csproj", "E2eTests/"]
 RUN dotnet restore "E2eTests/E2eTests.csproj"
