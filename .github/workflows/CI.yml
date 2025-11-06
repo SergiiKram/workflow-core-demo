@@ -36,5 +36,5 @@ jobs:
       if: (!cancelled())
       with:
         files: |
-          src/UnitTestResults/*.trx          
-          src/TestResults/*.trx
+          /src/UnitTestResults/*.trx          
+          /src/TestResults/*.trx
