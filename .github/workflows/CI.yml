@@ -24,14 +24,20 @@ jobs:
     - name: Run unit tests
       working-directory: src
       run: docker run --rm -v ${PWD}/UnitTestResults:/src/Orchestrator.UnitTests/TestResults orchestrator.unittests
+    #- name: Unit tests report
+    #  uses: dorny/test-reporter@v2
+    #  if: success() || failure()
+    #  with:
+    #    name: Unit tests results
+    #    working-directory: src
+    #    path: UnitTestResults/*.trx
+    #    reporter: dotnet-trx
     - name: Unit tests report
-      uses: dorny/test-reporter@v2
-      if: success() || failure()
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: (!cancelled())
       with:
-        name: Unit tests results
-        working-directory: src
-        path: UnitTestResults/*.trx
-        reporter: dotnet-trx
+        #working-directory: src
+        files: src/UnitTestResults/*.trx
     - name: Compose build
       working-directory: src
       run: docker compose -f docker-compose.yml -f docker-compose.dependencies.yml -f docker-compose.integration-tests.yml build
