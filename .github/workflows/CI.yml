@@ -25,20 +25,16 @@ jobs:
     - name: Run unit tests
       working-directory: src
       run: docker run --rm -v ${PWD}/UnitTestResults:/src/Orchestrator.UnitTests/TestResults orchestrator.unittests
-    - name: Unit tests report
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: (!cancelled())
-      with:
-        files: src/UnitTestResults/*.trx
     - name: Compose build
       working-directory: src
       run: docker compose -f docker-compose.yml -f docker-compose.dependencies.yml -f docker-compose.integration-tests.yml build
     - name: Compose run E2E tests
       working-directory: src
       run: docker compose -f docker-compose.yml -f docker-compose.dependencies.yml -f docker-compose.integration-tests.yml up --exit-code-from e2etests
-    - name: E2E tests report
+    - name: Tests report
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: (!cancelled())
       with:
-        files: src/TestResults/*.trx
-
+        files: |
+          src/UnitTestResults/*.trx          
+          src/TestResults/*.trx
