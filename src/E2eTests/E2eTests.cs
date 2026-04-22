@@ -41,7 +41,7 @@ namespace E2eTests
             // RabbitMQ initilizes too long in GitHub actions
             if (RunsInDocker)
             {
-                await Task.Delay(TimeSpan.FromSeconds(15));
+                await Task.Delay(TimeSpan.FromSeconds(15), TestContext.Current.CancellationToken);
             }
 
             var orchestratorClient = _host.Services.GetRequiredService<OrchestratorClient>();
@@ -52,7 +52,7 @@ namespace E2eTests
 
             for (var i = 0; i < 5; i++)
             {
-                await Task.Delay(TimeSpan.FromSeconds(15));
+                await Task.Delay(TimeSpan.FromSeconds(15), TestContext.Current.CancellationToken);
 
                 var wf = await orchestratorClient.GetWorkflow(id1.Id);
 
