@@ -11,10 +11,10 @@
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
     <PackageReference Include="Polly" Version="8.6.6" />
-    <PackageReference Include="SergiiKram.WorkflowCore.Persistence.PostgreSQL" Version="3.9.0.7" />
+    <PackageReference Include="SergiiKram.WorkflowCore.Persistence.PostgreSQL" Version="3.9.0.8" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
-    <PackageReference Include="SergiiKram.WorkflowCore" Version="3.9.0.7" />
-    <PackageReference Include="SergiiKram.WorkflowCore.Providers.Redis" Version="3.9.0.7" />
+    <PackageReference Include="SergiiKram.WorkflowCore" Version="3.9.0.8" />
+    <PackageReference Include="SergiiKram.WorkflowCore.Providers.Redis" Version="3.9.0.8" />
   </ItemGroup>
 
   <ItemGroup>
