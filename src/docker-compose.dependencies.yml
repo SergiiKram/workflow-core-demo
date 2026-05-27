@@ -27,10 +27,10 @@ services:
       - orchestrator-rabbitmq:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
-      interval: 10s
-      timeout: 5s
+      interval: 5s
+      timeout: 3s
       retries: 10
-      start_period: 30s
+      start_period: 10s
 
 volumes:
   orchestrator-redis:
