@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path="../.github/dependabot.yml" />
+  </Folder>
+  <Folder Name="/.github/workflows/">
+    <File Path="../.github/workflows/CI.yml" />
+    <File Path="../.github/workflows/codeql-analysis.yml" />
+  </Folder>
+  <Project Path="ActivityWorker/ActivityWorker.csproj" />
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="E2eTests/E2eTests.csproj" />
+  <Project Path="Orchestrator.UnitTests/Orchestrator.UnitTests.csproj" />
+  <Project Path="Orchestrator/Orchestrator.csproj" />
+  <Project Path="OrchestratorContracts/OrchestratorContracts.csproj" />
+</Solution>
