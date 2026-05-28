@@ -12,9 +12,12 @@ services:
     ports:
       - "7080:80"
     depends_on:
-     - postgres
-     - redis
-     - rabbitmq
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
 
   activityworker:
     image: ${DOCKER_REGISTRY-}activityworker
@@ -27,4 +30,5 @@ services:
     ports:
       - "7180:80"
     depends_on:
-     - rabbitmq
+      rabbitmq:
+        condition: service_healthy
