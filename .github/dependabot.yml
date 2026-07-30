@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/"
+    directory: "/src"
     ignore:
      - dependency-name: "Microsoft.Extensions.*"
        update-types: ["version-update:semver-major"]    
