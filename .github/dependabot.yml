@@ -8,8 +8,10 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/src"
     ignore:
-     - dependency-name: "Microsoft.Extensions.*"
-       update-types: ["version-update:semver-major"]    
+      - dependency-name: "Microsoft.Extensions.*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "MassTransit*"
+        update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
   - package-ecosystem: "github-actions"
