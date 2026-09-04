@@ -6,6 +6,9 @@
     <File Path="../.github/workflows/CI.yml" />
     <File Path="../.github/workflows/codeql-analysis.yml" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="global.json" />
+  </Folder>
   <Project Path="ActivityWorker/ActivityWorker.csproj" />
   <Project Path="docker-compose.dcproj">
     <Build />
